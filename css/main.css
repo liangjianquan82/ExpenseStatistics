@@ -1,0 +1,63 @@
+.mainbody {
+    background-size: 100% 840px;
+    background-repeat: no-repeat;
+    background-image: url(../img/back.jpg);
+}
+
+.mainbody .container .mainheader {
+    width: auto;
+    height: 0px;
+}
+form div h2 {
+    text-align: center;
+    color: #FFFFFF;
+   
+}
+
+
+main .row .search {
+    text-align: right;
+    width: 100%;
+}
+form .row .ExIn {
+    width: 60%;
+    text-align: center;
+}
+div .input-group #input_amount {
+    text-align: right;
+}
+div .row .psbt {
+    width: 100%;
+    text-align: center;
+}
+div .input-group #input_Remark {
+    width: 300px;
+}
+.chart {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+}
+.divchart {
+
+}
+
+.container main .chart {
+	
+}
+
+main .row .title {
+    text-align: center;
+    width: 100%;
+}
+form .row .title {
+	text-align: center;
+    width: 100%;
+}
+.container .row .title {
+    text-align: center;
+    width: 100%;
+}
+main div .titile {
+    text-align: center;
+}

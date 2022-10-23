@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Statistic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../css/main.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
+	<script src="../js/chart.js"></script>
+	
+</head>
+
+<body  style="padding-top: 70px; padding-bottom: 70px;">
+	<div class="container">
+	
+	<header>
+	  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light"> 
+		  <a class="navbar-brand" href="Home.html">Expense Statistics</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active"> <a class="nav-link" href="Home.html">Home <span class="sr-only">(current)</span></a> </li>
+	        <li class="nav-item dropdown"> 
+				
+				<a class="nav-link dropdown-toggle" href="Statistic.html" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Statistics</a> 
+			   <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+				  <a class="dropdown-item" href="Statistic.html">Year or Month Statistic</a> 
+				  <a class="dropdown-item" href="ConsumptionAnalysis.html">Consumption Analysis</a>
+	            <div class="dropdown-divider"></div></div></li>
+			  
+			  
+			  <li class="nav-item"> <a class="nav-link" href="Income.html">Income</a> </li>
+			  <li class="nav-item"> <a class="nav-link" href="Expenses.html">Expenses</a> </li>
+	        <li class="nav-item dropdown"> 
+				<a class="nav-link dropdown-toggle"  href="Type.html" id="navbarType" role="button" data-toggle="dropdown" 
+				   aria-haspopup="true" aria-expanded="false">Type</a>
+	          <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+				   <a class="dropdown-item" href="Type.html">Type List</a>
+				  <a class="dropdown-item" href="AddUpdateType.html">Add Type</a> 
+	            <div class="dropdown-divider"></div>
+<!--	            <a class="dropdown-item" href="#">Something else here</a> -->
+			  </div>
+            </li>
+<!--	        <li class="nav-item"> <a class="nav-link disabled" href="#">Disabled</a> </li>-->
+          </ul>
+<!--
+	      <form class="form-inline my-2 my-lg-0">
+	        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+	        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+-->
+        </div>
+      </nav>
+    </header>
+	<main>
+		<div class="row">
+		<div class="col-xl-6"></div>  
+		<div class="col-xl-6"><div class="search">
+			  <input type="checkbox" id="year" aria-label="placeholder text" checked="true">
+			  <label>Year</label>
+			  <input type="checkbox" id="Month" aria-label="placeholder text" checked="true">
+			  <label>Month</label>
+			  <input type="month" id="dateMonth"  />&nbsp;
+	  <button type="button" id="Check" class="btn btn-dark">Check</button></div></div>  
+		  
+	  
+</div>
+	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<div class="row">	
+			<div class="title">
+			<h3>Expenditure Statistic</h3>
+			</div>
+		</div>
+	<div class="row">
+	 <div class="col-xl-2"></div>  
+		<div class="col-xl-8">
+			<div class="chart">
+		<canvas id="myChart" width="100%" height="100%" ></canvas>
+	</div></div> 
+    
+	 <div class="col-xl-2"></div>  
+	</div>
+	</main>
+	
+	
+<script>
+//var mycars = ["food", "house", "Yellow", "Green", "Purple", "Orange"];
+	
+	var myCars1=new Array();
+		myCars1[0]="food";      
+		myCars1[1]="house";
+		myCars1[2]="clothes";
+		myCars1[3]="rent";
+		myCars1[4]="gas";
+		myCars1[5]="necessities";
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: myCars1,
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                '#AA1111',
+                '#FFFFFF',
+                '#000000',
+                '#EBEBEB',
+                '#AA1111',
+                '#FFFFFF'
+            ],
+            borderColor: [
+                '#000000',
+                '#000000',
+                '#000000',
+                '#000000',
+                '#000000',
+                '#000000'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+	
+
+</script>
+
+	
+	
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap-4.4.1.js"></script>
+<script src="../js/my.js"></script>
+	</div>
+</body>
+</html>
