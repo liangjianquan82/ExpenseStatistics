@@ -1,9 +1,8 @@
 .mainbody {
     background-size: 100% 840px;
     background-repeat: no-repeat;
-    background-image: url(../img/back.jpg);
+    background-image: url("../img/back.jpg")
 }
-
 .mainbody .container .mainheader {
     width: auto;
     height: 0px;
@@ -13,8 +12,6 @@ form div h2 {
     color: #FFFFFF;
    
 }
-
-
 main .row .search {
     text-align: right;
     width: 100%;
@@ -38,14 +35,6 @@ div .input-group #input_Remark {
     text-align: center;
     height: 100%;
 }
-.divchart {
-
-}
-
-.container main .chart {
-	
-}
-
 main .row .title {
     text-align: center;
     width: 100%;

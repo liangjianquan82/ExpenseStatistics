@@ -84,16 +84,16 @@
         // if there no match then the login is incorrect
         function getUserbyCredentials($params = null, $data){
 
-            // $query = "select username, password from users where username = :username and password = :password";
+            $query = "select user_id,user_email,password from tb_user where user_email = :username and password = :password";
 
-            // $statement = $this->conn->prepare($query);           
+        $statement = $this->conn->prepare($query);           
 
          
-            // $statement->execute([ 'username' => $data["username"]
-            //   ,'password' => $data["password"] 
-            // ]);
+            $statement->execute([ 'username' => $data["username"]
+            ,'password' => $data["password"] 
+            ]);
 
-			// return $statement->fetchAll(PDO::FETCH_CLASS);           
+			return $statement->fetchAll(PDO::FETCH_CLASS);           
 
         }   
 

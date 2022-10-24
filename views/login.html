@@ -32,22 +32,22 @@
 			  <br>
 	    </div>	  
 	 
-	 <form action="Home.html">
+	 <form  method="post">
       <div class="form-group">
-        <label for="exampleInputEmail1">EMAIL ADDRESS:</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email address">
+        <label >EMAIL ADDRESS:</label>
+        <input type="text" class="form-control" name="email"  placeholder="Email address">
          <br> </div>
 	 <div class="form-group">
-        <label for="exampleInputEmail1">PASSWORD:</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="password">
+        <label >PASSWORD:</label>
+        <input type="password" class="form-control" name="password"  placeholder="password">
         <br> </div>
       
       <div >
        
-	  <a class="btn-link" href="#">Forgot your password?</a>
+	  <!-- <a class="btn-link" href="#">Forgot your password?</a> -->
       </div>
 	   <div >
-      <button type="submit" onClick="logincheck()" class="btn btn-dark">Login</button>
+      <button type="submit" value="Login" class="btn btn-dark">Login</button>
 		</div>
       </form>
   </main>

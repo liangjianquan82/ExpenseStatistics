@@ -43,7 +43,7 @@ class LoginController{
             
             if(class_exists("LoginView")){
 
-                //$loginview = new LoginView($this->loginMessage);
+                $loginview = new LoginView($this->loginMessage);
 
             }
 
