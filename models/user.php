@@ -18,6 +18,10 @@
         public $email;
         public $picture;
 
+
+
+        
+
         private $conn;
 
         function __construct(){

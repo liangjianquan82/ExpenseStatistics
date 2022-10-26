@@ -3,6 +3,8 @@
    // namespace controllers\User;
     // We need to acces both User Model and View
     require(dirname(__DIR__)."/models/user.php");
+    require(dirname(__DIR__)."/models/fee_bill.php");
+    require(dirname(__DIR__)."/models/fee_type.php");
 
     require(dirname(__DIR__)."/core/authentication/auth.php");
     
@@ -11,6 +13,7 @@
     class UsersController {
 
         private $data;
+        private $data1;
         private int $upfile;
 
         private $authProvider;
@@ -37,42 +40,60 @@
 
             $this->authProvider = new AuthProvider($user);
 
+            $feebill = new Fee_bill();
+            $feetype = new Fee_type();
+
             //if()
 
-//echo "logged in: ".$this->authProvider->isLoggedIn();
+            //echo "logged in: ".$this->authProvider->isLoggedIn();
             // Check if the user is already logged in
             if($this->authProvider->isLoggedIn()){
 
-
-                $this->data = $user->$action($params, $payload);
-
-                
+                //$this->data = $user->$action($params, $payload);
+                //$this->data1 = $feebill->$action($params, $payload);                
                 // Determine which View to load.
                 if($action == "list"){
 
                     // Instead of doing this:
                     // require(dirname(__DIR__)."/views/".users.".php");
                     // we could use class_exists which invokes spl_autoload_register in index.php
-                    if(class_exists("UsersView")){ 
-                        //$userview = new UsersView($this->data);
-                    }
-                    
+                    $this->data = $user->$action($params, $payload);
+                    if(class_exists("HomeView")){ 
+                        $userview = new HomeView($this->data);
+                    }                   
                 
                 }
-                else if ($action == "create"){
+                else if ($action == "listexp"){
                     
                     // require(dirname(__DIR__)."/views/".$action."users".".php");
-                    if(class_exists("CreateUsers")){
-                        //$userview = new CreateUsers($this->data);
-                    }
-                
-                }else if($action == "login"){
+                    $this->data1 = $feebill->$action($params, $payload);
+                    if(class_exists("expensesview")){
+                        $userview = new ExpensesView($this->data1);
+                    }                
+                } 
+                else if ($action == "listincome"){
+                    
+                    // require(dirname(__DIR__)."/views/".$action."users".".php");
+                    $this->data1 = $feebill->$action($params, $payload);
+                    if(class_exists("incomeview")){
+                        $userview = new IncomeView($this->data1);
+                    }                
+                }      
+                else if($action == "createtype"){
 
                     // Take the user to the default secured page
-                    if(class_exists("UsersView")){ 
-                        //$userview = new UsersView($this->data);
+                    $this->data1 = $feetype->$action($params, $payload);
+                    if(class_exists("addupdatetype")){ 
+                        $userview = new AddUpdateType($this->data);
+                    }         
+                else if($action == "login"){
+
+                    // Take the user to the default secured page
+                    $this->data = $user->$action($params, $payload);
+                    if(class_exists("HomeView")){ 
+                        $userview = new HomeView($this->data);
                     }
-                    
+                    //
 
                 }
                
