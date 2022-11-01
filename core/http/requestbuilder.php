@@ -26,11 +26,14 @@ class RequestBuilder {
 
         // we do this:
 
-        $this->request = new Request( $_SERVER['REQUEST_METHOD'], 
+        $this->request = new Request( 
+            $_SERVER['REQUEST_METHOD'], 
             $_SERVER['REQUEST_URI'], 
             $_GET, 
             getallheaders(), 
            $_POST);
+
+        //    var_dump($_POST["type_name"]);
 
     }
 

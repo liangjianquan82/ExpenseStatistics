@@ -19,7 +19,7 @@ final class Request{
 
     //    var_dump($payload);
 
-     //   var_dump($_POST);
+       //var_dump($payload);
 
        // echo "file name: ".$_FILES["profileimage"]["name"];
 

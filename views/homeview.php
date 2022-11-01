@@ -11,9 +11,6 @@ include 'css/main.css';
 include 'css/bootstrap-4.4.1.css'; 
  ?>
 </style>
-
- 
-
 </head>
 	
 <body class="mainbody" style="padding-top: 70px">

@@ -4,7 +4,7 @@
 	<host>localhost</host>
 	<user>root</user>
 	<password></password>
-	<dbname>expstat</dbname>
+	<dbname>expstat1</dbname>
 </database>
 <path>
 	<rooturl>http://localhost/ExpenseStatistics</rooturl>

@@ -13,7 +13,8 @@
     class UsersController {
 
         private $data;
-        private $data1;
+        private $databill;
+        private $datatype;
         private int $upfile;
 
         private $authProvider;
@@ -66,26 +67,54 @@
                 else if ($action == "listexp"){
                     
                     // require(dirname(__DIR__)."/views/".$action."users".".php");
-                    $this->data1 = $feebill->$action($params, $payload);
+                    $this->databill = $feebill->$action($params, $payload);
                     if(class_exists("expensesview")){
-                        $userview = new ExpensesView($this->data1);
+                        $userview = new ExpensesView($this->databill);
                     }                
                 } 
                 else if ($action == "listincome"){
                     
                     // require(dirname(__DIR__)."/views/".$action."users".".php");
-                    $this->data1 = $feebill->$action($params, $payload);
+                    $this->databill = $feebill->$action($params, $payload);
                     if(class_exists("incomeview")){
-                        $userview = new IncomeView($this->data1);
+                        $userview = new IncomeView($this->databill);
                     }                
                 }      
+                else if($action == "createfee"){
+
+                    // Take the user to the default secured page
+                    $this->databill = $feebill->$action($params, $payload);
+                    if(class_exists("addupdatefee")){ 
+                        $userview = new AddUpdateFee($this->databill);
+                    }     
+                } 
                 else if($action == "createtype"){
 
                     // Take the user to the default secured page
-                    $this->data1 = $feetype->$action($params, $payload);
+                    $this->datatype = $feetype->$action($params, $payload);
                     if(class_exists("addupdatetype")){ 
-                        $userview = new AddUpdateType($this->data);
-                    }         
+                        $userview = new AddUpdateType($this->datatype);
+                    }     
+                }
+                else if($action == "updatetype"){
+
+                    // Take the user to the default secured page
+                    // var_dump($payload);
+                    $this->datatype = $feetype->$action($params, $payload);
+                    
+                    if(class_exists("addupdatetype")){ 
+                        $userview = new AddUpdateType($this->datatype);
+                    }     
+                    //header("Location: ".ROOTURL."/users/listtype/");
+                } 
+                else if($action == "listtype"){
+
+                    // Take the user to the default secured page
+                    $this->datatype = $feetype->$action($params, $payload);
+                    if(class_exists("typeview")){ 
+                        $userview = new TypeView($this->datatype);
+                    }     
+                }    
                 else if($action == "login"){
 
                     // Take the user to the default secured page

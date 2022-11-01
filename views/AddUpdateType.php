@@ -5,6 +5,11 @@
 	
 <style>
 <?php 
+ if( $_COOKIE['updatetype'] == 1){
+  //以下是跳转
+  echo"<script>alert('The Type was successfully created'); </script>";
+  header("Location: ".ROOTURL."/users/listtype/");
+}
 include 'css/main.css'; 
 include 'css/bootstrap-4.4.1.css'; 
  ?>
@@ -12,9 +17,15 @@ include 'css/bootstrap-4.4.1.css';
 </head>
 
 <body class="mainbody"  style="padding-top: 70px; padding-bottom: 70px;">
+
+<?php
+
+
+?>
+
 	
 <?php
-    class AddUpdateView{
+    class AddUpdateType{
 
         public $data;
         private $html;
@@ -36,25 +47,31 @@ include 'css/bootstrap-4.4.1.css';
 		  
 		    <div class="title"><h2>Add/UpdateType</h2></div>
 			  <br>
-	    </div>	  
-	 
-	 <form method="post">
-      <div class="row">
-        <label for="exampleInputEmail1">Type Name:</label>
-        <input type="email" class="form-control" id="TypeName" placeholder="Type Name">
-         <br> </div>
-         <br>	 
-	   <div>
-		<div class="row">
-		  <div class="psbt" > <button type="submit" class="btn btn-dark" id="Submit">Submit</button>
-			  &nbsp;
-		  <button type="submit" class="btn btn-dark" id="Cancel">Cancel</button></div>
-		</div>
-	  </div>
-      </form>
-  </main>
-	</div>
-    ';
+	    </div>	  ';
+     
+	        foreach($this->data as $type){
+            $this->html.='<form method="POST" enctype="multipart/form-data" >
+              <div class="row">
+                <label for="exampleInputEmail1">Type Name:</label>
+                <input type="text" class="form-control" name="type_name"  value="'.$type->type_name.'">
+                <br> </div>
+                <br>	 
+            <div>
+            <div class="row">
+              <div class="psbt" > 
+              <input type="submit" name="submit" class="btn btn-dark" value="Submit" />
+            
+                &nbsp;
+              
+              <a class="btn btn-dark" href="'.ROOTURL.'/users/listtype/'.'">Cancel</a>
+              </div>
+            </div>
+            </div>
+              </form>
+          </main>
+          </div>
+            ';
+          }
             echo $this->html;
             
              include 'footer.php';  

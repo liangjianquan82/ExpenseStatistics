@@ -37,7 +37,7 @@ include 'css/bootstrap-4.4.1.css';
            <main>
            <form method="POST">
                <div class="row">
-           <div class="col-xl-6"><a class="btn btn-dark" href="AddipdateIncome.html">Add</a></div>  
+           <div class="col-xl-6"><a class="btn btn-dark" href="'.ROOTURL.'/users/createfee/'.'">Add</a></div>  
            <div class="col-xl-6"><div class="search">
                  <input type="checkbox" id="year" aria-label="placeholder text" >
                  <label>Year</label>

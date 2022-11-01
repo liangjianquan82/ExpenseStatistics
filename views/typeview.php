@@ -20,6 +20,8 @@ include 'css/bootstrap-4.4.1.css';
         public $data;
         private $html;
 
+        private int $i;
+
         function __construct($data){
 
         $this->data = $data;
@@ -39,101 +41,38 @@ include 'css/bootstrap-4.4.1.css';
 		<div class="col-xl-6"></div>  
 		  
 	  
-</div>
-		  <div class="row">
+      </div>
+      <div class="row">
 			  <div class="title"><h3>Type Information</h3><br></div>
-		  </div>	  
-	  
-		
-		    <div class="row">
-		      <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Expenses" aria-label="placeholder text" checked="true">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-			  <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-					<div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-					<div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-           <label class="form-control" >type1</label>
-          </div>
-				
-		    </div>
-		  
-		   <div class="row">
-		      <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Expenses" aria-label="placeholder text" >
-              </div>
-            </div>
-           <label class="form-control" >type1</label>
-			  <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-					<div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-					<div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-           <label class="form-control" >type1</label>
-          </div>
-				
-		    </div>
-		  
-           <div class="row">
-		      <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Expenses" aria-label="placeholder text">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-			  <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-           <label class="form-control" >type1</label>
-					<div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-					<div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id="Income" aria-label="placeholder text">
-              </div>
-            </div>
-            <label class="form-control" >type1</label>
-          </div>
-				
-		    </div> 
+		  </div>	
+      
+            ';
+
+            $i = 0;
+            foreach($this->data as $type){
+              
+              echo $i%4;
+              if($i%4==0){
+                $this->html.='
+                        <div class="row">
+                        <div class="input-group">';
+              }
+              $this->html.='
+                            <a class="form-control" href="'.ROOTURL.'/users/updatetype/'.$type->type_id.'">'.$type->type_name.'</a>';
+              
+              if($i%4==3){
+                $this->html.='
+                </div>
+                </div>
+                '; 
+              }
+              $i++;
+            }   
+
+
+$this->html.='
+		    
+	   
 		  
             </main>
     </div>

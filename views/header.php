@@ -17,10 +17,10 @@ $html=' <header>
     
     <li class="nav-item"> <a class="nav-link" href="'.ROOTURL.'/users/listincome/'.'">Income</a> </li>
     <li class="nav-item"> <a class="nav-link" href="'.ROOTURL.'/users/listexp/'.'">Expenses</a> </li>
-    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="Type.html" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</a>
+    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="'.ROOTURL.'/users/listtype/'.'" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-        <a class="dropdown-item" href="Type.html">Type List</a>
-        <a class="dropdown-item" href="AddUpdateType.html">Add Type</a> 
+        <a class="dropdown-item" href="'.ROOTURL.'/users/listtype/'.'">Type List</a>
+        <a class="dropdown-item" href="'.ROOTURL.'/users/createtype/'.'">Add Type</a> 
         <div class="dropdown-divider"></div>
 <!--	            <a class="dropdown-item" href="#">Something else here</a> -->
     </div>

@@ -61,20 +61,20 @@
 
     $requestBuilder = new RequestBuilder();
     $request = $requestBuilder->getRequest();
-
+    // var_dump ( $request->getURLParams()["params"]);
     if(isset($request->getURLParams()["params"]))
         // Transform the URL parameters from a string into an array
         $paramsArray = explode("=", $request->getURLParams()["params"]);
         
-     /* Testing
-        var_dump($_GET);
-        echo "</br>";
-        echo $_GET["params"];
-        echo "</br>";
-        echo $_GET["action"];
-        echo "</br>";
-        var_dump($paramsArray);
-    */
+     //Testing
+        // var_dump($_GET);
+        // echo "</br>";
+        // echo $_GET["params"];
+        // echo "</br>";
+        // echo $_GET["action"];
+        // echo "</br>";
+        // var_dump($paramsArray);
+    
     
     // htmlentities transforms the input by the user either from the URL or in a form's text field into
     // just character symbols, to prevent malicious code injection.
@@ -93,7 +93,9 @@
             // The payload is for the Request
             // The $_GET is comming from the URL params which is coming from the Request
             $payload = $request->getPayload();
-
+            $method = $request->getMethod();
+            var_dump ($payload);
+            var_dump ($method);
             $params = $request->getURLParams();
 
             if(isset($params))
