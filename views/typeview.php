@@ -37,7 +37,7 @@ include 'css/bootstrap-4.4.1.css';
 	<div class="container">
     <main>
 		  <div class="row">
-		<div class="col-xl-6"><a class="btn btn-dark" href="'.ROOTURL.'/users/createtype/'.'">Add</a></div>  
+		<div class="col-xl-6"><a  class="btn btn-dark" href="'.ROOTURL.'/users/createtype/'.'">Add</a></div>  
 		<div class="col-xl-6"></div>  
 		  
 	  
@@ -51,7 +51,7 @@ include 'css/bootstrap-4.4.1.css';
             $i = 0;
             foreach($this->data as $type){
               
-              echo $i%4;
+              //echo $i%4;
               if($i%4==0){
                 $this->html.='
                         <div class="row">

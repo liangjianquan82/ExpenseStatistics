@@ -21,7 +21,7 @@ $html=' <header>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
         <a class="dropdown-item" href="'.ROOTURL.'/users/listtype/'.'">Type List</a>
         <a class="dropdown-item" href="'.ROOTURL.'/users/createtype/'.'">Add Type</a> 
-        <div class="dropdown-divider"></div>
+       
 <!--	            <a class="dropdown-item" href="#">Something else here</a> -->
     </div>
     </li>

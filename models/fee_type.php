@@ -31,23 +31,50 @@
                 $query = "select * from fee_type";
                 $statement = $this->conn->prepare($query); 
                 $statement->execute(); 
+                return $statement->fetchAll(PDO::FETCH_CLASS);   
             }          
-            else{
+            else{               
                 $feetype = new Fee_type();
+                //var_dump($params[1]);
                 return $feetype->getTypebyID($params[1]); 
-            }
+            }		
 			
-			return $statement->fetchAll(PDO::FETCH_CLASS);   
         }
+        function getTypebyID($id){
+            //return "unimplemented";    
+            $query = "select * from fee_type where type_id = :id";
+            $statement = $this->conn->prepare($query) ; 
+            $statement->execute([ 'id' => $id ]);
+            return $statement->fetchAll(PDO::FETCH_CLASS);
+        } 
 
         function createtype($params, $data){
+            
+            if(!empty($data)){
+                if($data["type_name"]==""||empty($data["type_name"]))
+                {
+                    echo "textbox is not empty";
+                }
+                else{
+                    $_COOKIE['createtype'] = 1;
+                    $query = "insert into fee_type (type_name) values (:type_name)";
+                    $statement = $this->conn->prepare($query);                
+                   
+
+                    $statement->execute([ 'type_name' => $data["type_name"]                       
+                        ]);
+                   
+                    return $statement->rowCount();
+                }
+                
+            }
+
+            return 0;
         }
 
         function updatetype($params, $data){
 
-            // var_dump($data);
-            // var_dump($params);
-            $_COOKIE['updatetype'] = 0;
+            
             if(empty($data)){
                 $feetype = new Fee_type();
                 return $feetype->listtype($params, $data);     
@@ -57,8 +84,6 @@
                 $query = "update  fee_type set type_name = :type_name  where type_id=:id";
                 $statement = $this->conn->prepare($query);
                 
-                //parse_str($data, $dataArray);
-                //var_dump($dataArray);
                 $statement->execute([
                     'type_name' => $data["type_name"]
                     
@@ -71,12 +96,6 @@
             //return 0;
         }
 
-        function getTypebyID($id){
-            //return "unimplemented";    
-            $query = "select * from fee_type where type_id = :id";
-            $statement = $this->conn->prepare($query) ; 
-            $statement->execute([ 'id' => $id ]);
-            return $statement->fetchAll(PDO::FETCH_CLASS);
-        }  
+         
         
     }

@@ -21,6 +21,12 @@
 
         function index($action, $params, $payload){
             // Get user data so that it is used by the View
+            $_COOKIE['createtype'] = 0;
+            $_COOKIE['updatetype'] = 0;
+
+           
+            //var_dump($action);
+
             $user = new User();
            // $upload = new Upload();
             
@@ -82,6 +88,7 @@
                 }      
                 else if($action == "createfee"){
 
+                    
                     // Take the user to the default secured page
                     $this->databill = $feebill->$action($params, $payload);
                     if(class_exists("addupdatefee")){ 
@@ -90,6 +97,7 @@
                 } 
                 else if($action == "createtype"){
 
+                   
                     // Take the user to the default secured page
                     $this->datatype = $feetype->$action($params, $payload);
                     if(class_exists("addupdatetype")){ 
@@ -98,6 +106,7 @@
                 }
                 else if($action == "updatetype"){
 
+                   
                     // Take the user to the default secured page
                     // var_dump($payload);
                     $this->datatype = $feetype->$action($params, $payload);
