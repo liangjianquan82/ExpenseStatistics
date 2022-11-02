@@ -8,6 +8,10 @@
 <?php 
 include 'css/main.css'; 
 include 'css/bootstrap-4.4.1.css'; 
+include 'js/jquery-3.4.1.min.js'; 
+include 'js/popper.min.js'; 
+include 'js/bootstrap-4.4.1.js'; 
+include 'js/my.js'; 
  ?>
 </style>
 </head>
@@ -31,6 +35,8 @@ include 'css/bootstrap-4.4.1.css';
         }
         function render(){
             include 'header.php';   
+
+           
             $this->html='
         
 	
@@ -43,7 +49,7 @@ include 'css/bootstrap-4.4.1.css';
 	  
       </div>
       <div class="row">
-			  <div class="title"><h3>Type Information</h3><br></div>
+			  <div class="title"><h3>Type List</h3><br></div>
 		  </div>	
       
             ';
@@ -90,10 +96,7 @@ $this->html.='
 <script src="../js/my.js"></script>
 <script>
 <?php 
-include 'js/jquery-3.4.1.min.js'; 
-include 'js/popper.min.js'; 
-include 'js/bootstrap-4.4.1.js'; 
-include 'js/my.js'; 
+
 ?>
 </script>
 </body>

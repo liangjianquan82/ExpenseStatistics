@@ -40,6 +40,12 @@
             }		
 			
         }
+        function listtypeAll(){
+            $query = "select * from fee_type";
+            $statement = $this->conn->prepare($query); 
+            $statement->execute(); 
+            return $statement->fetchAll(PDO::FETCH_CLASS);   
+       }
         function getTypebyID($id){
             //return "unimplemented";    
             $query = "select * from fee_type where type_id = :id";
@@ -56,7 +62,7 @@
                     echo "textbox is not empty";
                 }
                 else{
-                    $_COOKIE['createtype'] = 1;
+                    $_COOKIE['updatetype'] = 1;
                     $query = "insert into fee_type (type_name) values (:type_name)";
                     $statement = $this->conn->prepare($query);                
                    
@@ -80,7 +86,7 @@
                 return $feetype->listtype($params, $data);     
             }
             else{
-               
+                $_COOKIE['updatetype'] = 1;
                 $query = "update  fee_type set type_name = :type_name  where type_id=:id";
                 $statement = $this->conn->prepare($query);
                 
@@ -89,7 +95,7 @@
                     
                     ,'id' => $params[1]  
                     ]);
-                $_COOKIE['updatetype'] = 1;
+               
                 $feetype = new Fee_type();
                 return $feetype->listtype($params, $data);  
             }

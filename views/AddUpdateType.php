@@ -4,13 +4,16 @@
 <title>Type Information</title>
 	
 <style>
+  
+ 
 <?php 
  if( $_COOKIE['updatetype'] == 1||$_COOKIE['createtype'] == 1){
   //以下是跳转
   //var_dump($_COOKIE['updatetype']);
-  echo"<script>alert('The Type was successfully created'); </script>";
+  echo"<script>alert('The Type was successfully'); </script>";
   header("Location: ".ROOTURL."/users/listtype/");
 }
+
 include 'css/main.css'; 
 include 'css/bootstrap-4.4.1.css'; 
  ?>
@@ -40,19 +43,19 @@ include 'css/bootstrap-4.4.1.css';
         }
         function render(){
             include 'header.php';   
+
+           // echo $_COOKIE['updatetype'];
+
             $this->html='
             <div class="container">
             <main>
 		  
-	  <div class="row" >';
-		  
-    if( $_COOKIE['createtype'] == 0 && empty($this->data)){
-      $this->html.='<div class="title"><h2>Add Type</h2></div>';
-    }else if($_COOKIE['updatetype'] == 0 && !empty($this->data)){
-      $this->html.='<div class="title"><h2>Update Type</h2></div>';
+	  <div class="row" >'; 
+   
+   
+      $this->html.='<div class="title"><h2>Type information</h2></div>';
 
-    }
-		    
+    
         $this->html.='<br>
 	    </div>	  ';
      
@@ -85,7 +88,7 @@ include 'css/bootstrap-4.4.1.css';
         else{
           $this->html.='<form method="POST" enctype="multipart/form-data" >
               <div class="row">
-                <label for="exampleInputEmail1">Type Name:</label>
+                <label >Type Name:</label>
                 <input type="text" class="form-control" name="type_name"  value="">
                 <br> </div>
                 <br>	 

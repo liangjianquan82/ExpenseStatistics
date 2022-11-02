@@ -43,7 +43,7 @@ include 'css/bootstrap-4.4.1.css';
                  <label>Year</label>
                  <input type="checkbox" id="month" aria-label="placeholder text" checked="true">
                  <label>Month</label>
-                 <input type="date" id="dateMonth"  value = "'.date("Y-m-d").'"/>&nbsp;
+                 <input type="date" id="dateMonth" name="dateMonth" value = "'.date("Y-m-d").'"/>&nbsp;
                  <input type="submit" class="btn btn-dark" value="Check" /></div></div>  
              
          
@@ -54,33 +54,27 @@ include 'css/bootstrap-4.4.1.css';
                <h3>Income Information</h3>
                    <br>
                    </div>
-           </div>
-                   
-           <div class="row">		
-                <div class="col-xl-2 border-dark"></div>  
-             <div class="col-xl-4">Income1</div>
-             <div class="col-xl-4">1</div>  
-                <div class="col-xl-2"></div>  
-           </div>
-           <div class="row">		
-                <div class="col-xl-2"></div>  
-             <div class="col-xl-4">Income2</div>
-             <div class="col-xl-4">2</div>  
-                <div class="col-xl-2"></div>  
-           </div>
-           <div class="row">		
-                <div class="col-xl-2"></div>  
-             <div class="col-xl-4">Income3</div>
-             <div class="col-xl-4">3</div>  
-                <div class="col-xl-2"></div>  
-           </div>
+           </div>';
+           if(count($this->data)>0){
+            foreach($this->data as $bill){
+                $html.=' 
+                <div class="row">		
+               
+                    <div class="input-group">
+
+                    <a class="form-control" href="'.ROOTURL.'/users/updatefee/'.$bill->bill_id.'">'.$bill->type_name.'</a>
+                        <div class="form-control"> '.$bill->amount.' </div>
+                        <div class="form-control"> '.$bill->bill_time.'</div>
+
+
+                    </div>
+                </div>
+                 ';
+            }
+           }
            
-           <div class="row">		
-               <div class="col-xl-2"></div>  
-             <div class="col-xl-4">Total:</div>
-             <div class="col-xl-4">6</div> 
-               <div class="col-xl-2"></div>  
-           </div>
+           $html.='                  
+         
        </main>
        </div>';
        echo $html;

@@ -9,16 +9,20 @@
 
         public $user;
 
-        function __construct($user){
+        function __construct(){
 
-            $this->user = new User();
+            $user = new User();
 
-            $this->user = $user;
+           $this->user = $user;
 
         }
 
         // Check if the user set in the cookie is logged in.
-        public function isLoggedIn(){
+        public function isLoggedIn($params, $data){
+
+            //var_dump ($data["user_email"]);
+            // var_dump ($data);
+            
 
             $loggedIn = false;
 
@@ -51,32 +55,38 @@
         // We can use an identifier for the user and session instead of the username
         public function login($params, $data){
 
+            //var_dump ("1");
+           
+            $loggedIn = false;
             $result = $this->user->getUserbyCredentials($params, $data);
 
-            // $result not empty: means that there is at least one user with the matching username and password
-
-            // Do not do is_null($result) or isset($result) it would give true for an empty array
+            //var_dump($result);
 
             if(!empty($result)){
+            session_name("expstat");
 
-                session_name("expstat");
+            session_start();
 
-                session_start();
+            $_SESSION["username"] = $data["username"];
 
-                // parse_str($data, $dataArray);
+            $_SESSION["password"] = $data["password"];
+            //$_SESSION["user_id"] = $result["user_id"];
 
-                // $_SESSION["username"] = $dataArray["username"];
+           
 
-                $_SESSION["username"] = $data["username"];
+            session_write_close();
 
-                session_write_close();
+            $loggedIn = true;
 
-                return true;
+        }
+        else{
 
-            }else{
+            $loggedIn = false;
+        }
+           
 
-                return false;
-            }
+            return $loggedIn;
+            
 
         }
 

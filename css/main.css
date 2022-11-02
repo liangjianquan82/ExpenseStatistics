@@ -49,4 +49,9 @@ form .row .title {
 }
 main div .titile {
     text-align: center;
+    width: 100%;
+}
+.container form .row {
+	
+    width: 100%;
 }

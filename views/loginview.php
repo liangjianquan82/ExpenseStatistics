@@ -7,7 +7,11 @@
 <title>login</title>
 <!-- <link href="../css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css"> -->
 <style>
-<?php include 'css/main.css'; 
+<?php 
+
+
+
+include 'css/main.css'; 
  include 'css/bootstrap-4.4.1.css'; ?>
 
 </style>
@@ -29,6 +33,10 @@
                 $this->render();        
             }
             function render(){
+
+              //var_dump($_POST["username"]);
+              //var_dump($_POST["password"]);
+
                 $this->html = ' 
                 <div class="container" style="background: url(back.png);">
                 <header class="mainheader" >
@@ -40,7 +48,7 @@
                         <ul class="navbar-nav mr-auto">
                         
                         </ul>          
-                    <a class="btn-link" href="../views/registration.html">Sign Up</a>
+                    <a class="btn-link" href="">Sign Up</a>
                       </div>
                   </nav>
                 </header>
@@ -51,42 +59,40 @@
                       <div class="titile"><h2 >Login</h2></div>
                       <br>
                     </div>
-                <form  method="post">
-                                  <div class="form-group">
-                                    <label for="username" >EMAIL ADDRESS:</label>
-                                    <input type="text" class="form-control" name="username"  placeholder="Email address">
-                                    <br> 
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="password" >PASSWORD:</label>
-                                    <input type="password" class="form-control" name="password"  placeholder="password">
-                                  <br> 
-                                  </div>                
-                                
-                                  <div >
-                                    <button type="submit" value="Login" class="btn btn-dark">Login</button>
-                                  </div>
-                                </form>                            
+                    <form method="POST">
+                
+                        <label for="username">Username:</label>
+
+                        <input type="text" class="form-control" name="username"/><br>
+
+                        <label for="password">Password:</label>
+
+                        <input type="password" class="form-control" name="password"/><br>         
+                        
+                        <input type="submit" class="btn btn-dark" value="Login" />
+
+                        </form>
+                
 
 	 
-                                </main>
-                                <footer>
-                                  <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light"> 
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-                                    <ul class="navbar-nav mr-auto">
-                                            <div class="row">
-                                      <div class="col-xl-auto"> Copyright @Liang Jianquan</div>
-                                            
-                                        </div>
-                                        </ul> 
-                                    </div>
+                        </main>
+                        <footer>
+                          <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light"> 
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+                            <ul class="navbar-nav mr-auto">
+                                    <div class="row">
+                              <div class="col-xl-auto"> Copyright @Liang Jianquan</div>
                                     
-                                  
-                                    </nav>
-                                  
-                                  </footer>
-                                  
-                              </div>';
+                                </div>
+                                </ul> 
+                            </div>
+                            
+                          
+                            </nav>
+                          
+                          </footer>
+                          
+                      </div>';
 
 echo $this->html;
 echo "</br>";

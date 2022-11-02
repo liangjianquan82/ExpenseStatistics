@@ -6,25 +6,12 @@ $html=' <header>
 <div class="collapse navbar-collapse" id="navbarSupportedContent1">
 <ul class="navbar-nav mr-auto">
     <li class="nav-item active"> <a class="nav-link" href="'.ROOTURL.'/users/list/'.'">Home <span class="sr-only">(current)</span></a> </li>
-    <li class="nav-item dropdown"> 
-        
-        <a class="nav-link dropdown-toggle" href="Statistic.html" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Statistics</a> 
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-        <a class="dropdown-item" href="Statistic.html">Year or Month Statistic</a> 
-        <a class="dropdown-item" href="ConsumptionAnalysis.html">Consumption Analysis</a>
-        <div class="dropdown-divider"></div></li>
+    <li class="nav-item "> <a class="nav-link "href="'.ROOTURL.'/users/Statistic/'.'" >Statistics</a>  </li>
     
     
     <li class="nav-item"> <a class="nav-link" href="'.ROOTURL.'/users/listincome/'.'">Income</a> </li>
     <li class="nav-item"> <a class="nav-link" href="'.ROOTURL.'/users/listexp/'.'">Expenses</a> </li>
-    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="'.ROOTURL.'/users/listtype/'.'" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-        <a class="dropdown-item" href="'.ROOTURL.'/users/listtype/'.'">Type List</a>
-        <a class="dropdown-item" href="'.ROOTURL.'/users/createtype/'.'">Add Type</a> 
-       
-<!--	            <a class="dropdown-item" href="#">Something else here</a> -->
-    </div>
-    </li>
+    <li class="nav-item"> <a class="nav-link"  href="'.ROOTURL.'/users/listtype/'.'" >Type</a></li>
     
 </ul>
 <!--

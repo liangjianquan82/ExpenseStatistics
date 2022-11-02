@@ -93,11 +93,11 @@
             // The payload is for the Request
             // The $_GET is comming from the URL params which is coming from the Request
             $payload = $request->getPayload();
-            //$method = $request->getMethod();
-            // var_dump ($payload);
-            // var_dump ($method);
+            $method = $request->getMethod();
+             //var_dump ($payload);
+             //var_dump ($method);
             $params = $request->getURLParams();
-            //var_dump ($params);
+            
             if(isset($params))
                 $action = !empty($request->getURLParams()["action"]) ? $request->getURLParams()["action"] : "";
 

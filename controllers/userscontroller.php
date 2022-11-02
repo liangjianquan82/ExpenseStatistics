@@ -21,9 +21,9 @@
 
         function index($action, $params, $payload){
             // Get user data so that it is used by the View
-            $_COOKIE['createtype'] = 0;
-            $_COOKIE['updatetype'] = 0;
-
+            
+           
+           
            
             //var_dump($action);
 
@@ -45,7 +45,7 @@
                 // $user->username =  $payload["username"];
                 // $user->password = $payload["password"];
 
-            $this->authProvider = new AuthProvider($user);
+            $this->authProvider = new AuthProvider();
 
             $feebill = new Fee_bill();
             $feetype = new Fee_type();
@@ -54,7 +54,9 @@
 
             //echo "logged in: ".$this->authProvider->isLoggedIn();
             // Check if the user is already logged in
-            if($this->authProvider->isLoggedIn()){
+
+            
+            if($this->authProvider->isLoggedIn($params, $payload)){
 
                 //$this->data = $user->$action($params, $payload);
                 //$this->data1 = $feebill->$action($params, $payload);                
@@ -88,11 +90,22 @@
                 }      
                 else if($action == "createfee"){
 
-                    
+                    //var_dump($payload);
                     // Take the user to the default secured page
                     $this->databill = $feebill->$action($params, $payload);
+                    $this->datatype = $feetype->listtype($params, $payload);
                     if(class_exists("addupdatefee")){ 
-                        $userview = new AddUpdateFee($this->databill);
+                        $userview = new AddUpdateFee($this->databill,$this->datatype);
+                    }     
+                } 
+                else if($action == "updatefee"){
+
+                    //var_dump($payload);
+                    // Take the user to the default secured page
+                    $this->databill = $feebill->$action($params, $payload);
+                    $this->datatype = $feetype->listtypeAll();
+                    if(class_exists("addupdatefee")){ 
+                        $userview = new AddUpdateFee($this->databill,$this->datatype);
                     }     
                 } 
                 else if($action == "createtype"){
@@ -100,15 +113,14 @@
                    
                     // Take the user to the default secured page
                     $this->datatype = $feetype->$action($params, $payload);
+                    //header("Location: ".ROOTURL."/users/listtype/");
                     if(class_exists("addupdatetype")){ 
                         $userview = new AddUpdateType($this->datatype);
                     }     
                 }
                 else if($action == "updatetype"){
 
-                   
-                    // Take the user to the default secured page
-                    // var_dump($payload);
+                  
                     $this->datatype = $feetype->$action($params, $payload);
                     
                     if(class_exists("addupdatetype")){ 
@@ -125,7 +137,7 @@
                     }     
                 }    
                 else if($action == "login"){
-
+                   //echo 23;
                     // Take the user to the default secured page
                     $this->data = $user->$action($params, $payload);
                     if(class_exists("HomeView")){ 
