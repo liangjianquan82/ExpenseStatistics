@@ -18,10 +18,12 @@ include 'css/bootstrap-4.4.1.css';
     class IncomeView{
         public $data;
         private $html;
+        public $total;
 
         function __construct($data){
 
         $this->data = $data;
+        
 
         $this->render();        
 
@@ -57,6 +59,7 @@ include 'css/bootstrap-4.4.1.css';
            </div>';
            if(count($this->data)>0){
             foreach($this->data as $bill){
+                $this->total = $this->total+$bill->amount;
                 $html.=' 
                 <div class="row">		
                
@@ -73,7 +76,17 @@ include 'css/bootstrap-4.4.1.css';
             }
            }
            
-           $html.='                  
+           $html.='     <div class="row">		
+               
+           <div class="input-group">
+
+          
+               <div class="form-control"> Total Expenses Amount </div>
+               <div class="form-control"> '.$this->total.'</div>
+
+
+           </div>
+       </div>                   
          
        </main>
        </div>';
