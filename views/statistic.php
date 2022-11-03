@@ -9,6 +9,7 @@
 <?php 
 include 'css/main.css'; 
 include 'css/bootstrap-4.4.1.css'; 
+include 'js/chart.js'; 
  ?>
 </style>
 <script  src ="https://cdnjs.com/libraries/Chart.js"></script> 
@@ -132,7 +133,7 @@ include 'css/bootstrap-4.4.1.css';
                 if($a%4==0){
                     $html.= ' "#AA1111" ';
                 }else if($a%4==1){
-                    $html.= ' "#FFFFFF" ';
+                    $html.= ' "#AAFFFF" ';
                 }else if($a%4==2){
                     $html.= ' "#000000" ';
                 }else if($a%4==3){
@@ -140,14 +141,20 @@ include 'css/bootstrap-4.4.1.css';
                 }
             }
             $html.= '],';
-                    //    borderColor: [
+            $html.= 'borderColor: [';
                     //        '#000000',
                     //        '#000000',
                     //        '#000000',
                     //        '#000000',
                     //        '#000000',
                     //        '#000000'
-                    //    ],
+                    for($a=0;$a<count($this->data);$a++){
+                        if($a!=0){
+                            $html.= ',';
+                        }
+                        $html.= '"#000000"';
+                    }
+                    $html.= '],';
                     $html.= '           borderWidth: 1 ';
                     $html.= '       }]
                },
@@ -181,8 +188,8 @@ include 'css/bootstrap-4.4.1.css';
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
 <script  src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-<script  src ="https://cdnjs.com/libraries/Chart.js"></script> 
-<script src="js/chart.js"></script>
+<script  src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> 
+
 
 
 
