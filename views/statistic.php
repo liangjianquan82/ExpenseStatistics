@@ -182,7 +182,7 @@ include 'css/bootstrap-4.4.1.css';
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
 <script  src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 <script  src ="https://cdnjs.com/libraries/Chart.js"></script> 
-<script src="js\chart.js"></script>
+<script src="js/chart.js"></script>
 
 
 
