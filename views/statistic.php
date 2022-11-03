@@ -131,15 +131,25 @@ include 'css/main.css';
                 if($a!=0){
                     $html.= ',';
                 }
-                if($a%4==0){
-                    $html.= ' "#AA1111" ';
-                }else if($a%4==1){
-                    $html.= ' "#FFFFFF" ';
-                }else if($a%4==2){
-                    $html.= ' "#000000" ';
-                }else if($a%4==3){
-                    $html.= ' "#EBEBEB" ';
+                if($a%6==0){
+                    $html.= ' "#8a704f" ';
+                }else if($a%6==1){
+                    $html.= ' "#efe8de" ';
+                }else if($a%6==2){
+                    $html.= ' "#5a5250" ';
+                }else if($a%6==3){
+                    $html.= ' "#d5ad70" ';
                 }
+                else if($a%6==4){
+                    $html.= ' "#9d5070" ';
+                }
+                else if($a%6==5){
+                    $html.= ' "#dcbb86" ';
+                }
+                // else if($a%7==6){
+                //     $html.= ' "#AA1111" ';
+                // }
+                
             }
             $html.= '],';
             $html.= 'borderColor: [';

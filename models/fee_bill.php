@@ -210,7 +210,7 @@
             return 0;
         }
         function updatefee($params, $data){
-            var_dump($params[1]);
+            //var_dump($params[1]);
         //    var_dump(count($data));
             if(count($data)==0){             
 
