@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>Type list</title>
-	
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
 <style>
 <?php 
 include 'css/main.css'; 
@@ -90,10 +91,11 @@ $this->html.='
     }
     ?>
 	
-<script src="../js/jquery-3.4.1.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap-4.4.1.js"></script>
-<script src="../js/my.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script  src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+<script  src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> 
 <script>
 <?php 
 

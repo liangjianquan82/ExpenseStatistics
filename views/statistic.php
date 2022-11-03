@@ -4,12 +4,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Statistic</title>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <style>
 <?php 
 include 'css/main.css'; 
-include 'css/bootstrap-4.4.1.css'; 
-include 'js/chart.js'; 
+//include 'css/bootstrap-4.4.1.css'; 
+//include 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css';
+
  ?>
 </style>
 <script  src ="https://cdnjs.com/libraries/Chart.js"></script> 
@@ -133,7 +134,7 @@ include 'js/chart.js';
                 if($a%4==0){
                     $html.= ' "#AA1111" ';
                 }else if($a%4==1){
-                    $html.= ' "#AAFFFF" ';
+                    $html.= ' "#FFFFFF" ';
                 }else if($a%4==2){
                     $html.= ' "#000000" ';
                 }else if($a%4==3){
@@ -142,12 +143,7 @@ include 'js/chart.js';
             }
             $html.= '],';
             $html.= 'borderColor: [';
-                    //        '#000000',
-                    //        '#000000',
-                    //        '#000000',
-                    //        '#000000',
-                    //        '#000000',
-                    //        '#000000'
+                    
                     for($a=0;$a<count($this->data);$a++){
                         if($a!=0){
                             $html.= ',';
@@ -189,6 +185,7 @@ include 'js/chart.js';
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
 <script  src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 <script  src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> 
+
 
 
 
