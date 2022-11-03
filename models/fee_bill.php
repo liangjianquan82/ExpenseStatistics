@@ -9,6 +9,7 @@
     //// dirname(__DIR__): htdocs/ExpenseStatistics
     
     require_once(dirname(__DIR__)."/core/database/dbconnectionmanager.php");
+    //require(dirname(__DIR__)."/models/fee_type.php");
    
 
     class Fee_bill {
@@ -34,8 +35,54 @@
 
         }
 
+        function list($params, $data){
+            if(count($data)>0){
+                $datetime = $data["dateMonth"];
+                $this->saveselectdate($datetime);
+            }
+            else if(empty($_SESSION["selectdate"])){
+                $datetime = date("Y-m-d");
+            }
+            else{
+                $datetime =$_SESSION["selectdate"];
+            }
+            if(!empty($_SESSION["username"])){
+                //SELECT fb.bill_id,
+                // ft.type_name,fb.amount,
+                // date_format(fb.bill_time,'%Y-%m')as bill_time 
+                // FROM `fee_bill` as fb
+                //  INNER JOIN fee_type ft on ft.type_id=fb.type_id 
+                //  where fb.state=1 and fb.user_name = 'user1111@gmail.com';
+                 $query = "select fb.bill_id,ft.type_name,
+                 fb.amount,date_format(fb.bill_time,'%Y-%m')as bill_time ,fb.state
+                 FROM `fee_bill` as fb INNER JOIN fee_type ft 
+                 on ft.type_id=fb.type_id 
+                 where  fb.user_name = :username 
+                 and DATE_FORMAT(fb.bill_time, '%Y-%m')like DATE_FORMAT(:dateMonth, '%Y-%m')";
+                $statement = $this->conn->prepare($query); 
+                $statement->execute(
+                ['username' => $_SESSION["username"] 
+                ,'dateMonth' => $datetime ]
+                );
+            }
+           
+			
+			return $statement->fetchAll(PDO::FETCH_CLASS);            
+
+        }
+
         function listexp($params, $data){
 
+            if(count($data)>0){
+                $datetime = $data["dateMonth"];
+                $this->saveselectdate($datetime);
+            }
+            else if(empty($_SESSION["selectdate"])){
+                $datetime = date("Y-m-d");
+            }
+            else{
+                $datetime =$_SESSION["selectdate"];
+            }
             if(!empty($_SESSION["username"])){
                 //SELECT fb.bill_id,
                 // ft.type_name,fb.amount,
@@ -48,10 +95,12 @@
                  FROM `fee_bill` as fb INNER JOIN fee_type ft 
                  on ft.type_id=fb.type_id 
                  where fb.state= 1 and 
-                 fb.user_name = :username ";
+                 fb.user_name = :username and
+                 DATE_FORMAT(fb.bill_time, '%Y-%m')like DATE_FORMAT(:dateMonth, '%Y-%m')";
                 $statement = $this->conn->prepare($query); 
                 $statement->execute(
-                ['username' => $_SESSION["username"] ]
+                ['username' => $_SESSION["username"] 
+                ,'dateMonth' => $datetime ]
                 );
             }
            
@@ -60,7 +109,16 @@
 
         }
         function listincome($params, $data){
-
+            if(count($data)>0){
+                $datetime = $data["dateMonth"];
+                $this->saveselectdate($datetime);
+            }
+            else if(empty($_SESSION["selectdate"])){
+                $datetime = date("Y-m-d");
+            }
+            else{
+                $datetime =$_SESSION["selectdate"];
+            }
            if(!empty($_SESSION["username"])){
                 //SELECT fb.bill_id,
                 // ft.type_name,fb.amount,
@@ -73,10 +131,12 @@
                  FROM `fee_bill` as fb INNER JOIN fee_type ft 
                  on ft.type_id=fb.type_id 
                  where fb.state= 2 and 
-                 fb.user_name = :username ";
+                 fb.user_name = :username and
+                 DATE_FORMAT(fb.bill_time, '%Y-%m')like DATE_FORMAT(:dateMonth, '%Y-%m')";
                 $statement = $this->conn->prepare($query); 
                 $statement->execute(
-                ['username' => $_SESSION["username"] ]
+                ['username' => $_SESSION["username"]
+                ,'dateMonth' => $datetime ]
                 );
             }
            
@@ -87,6 +147,13 @@
 
         }
 
+        function saveselectdate($datetime){
+
+            session_start();
+            $_SESSION["selectdate"]=$datetime;
+            session_write_close();
+                       
+        }
       
         function listinorexp($params, $data){
             if(empty($params[1])){
@@ -165,7 +232,7 @@
                 $statement->execute([
                     'type_id' => $data["type_id"]                    
                     ,'bill_time' => $data["bill_time"]                    
-                    ,'type_id' => $data["type_id"]                    
+                                    
                     ,'Remark' => $data["Remark"]                    
                     ,'amount' => $data["amount"]                    
                     ,'state' => $data["state"]                    
@@ -175,6 +242,70 @@
                 return $feebill->getBillbyID($params);     
             }
             //return 0;
+        }
+        function Statistic($params, $data){
+            $feetype = new Fee_type();
+            $datatype = $feetype->listtypeAll();
+            $arr_tmp=array();
+            $i=0;
+            foreach($datatype as $bill){
+                $totalsum = $this->sumbyTimeUsernameStateTypeid($params, $data,$bill->type_id);
+                if(!empty($totalsum)){
+                    $arr_tmp[$i]=array($bill->type_name,$totalsum);
+                    $i++;
+                }                
+                
+            }
+           
+            return $arr_tmp;
+             //build an array
+             //Sum the same items in the current month according to the fee_type fee type
+             //Corresponding to the fee name, put the fee name and amount into a two-dimensional array.
+
+        }
+
+        function sumbyTimeUsernameStateTypeid($params, $data,$type_id){
+
+            //echo $type_id;
+            if(count($data)>0){
+                $datetime = $data["dateMonth"];
+                $this->saveselectdate($datetime);
+            }
+            else if(empty($_SESSION["selectdate"])){
+                $datetime = date("Y-m-d");
+            }
+            else{
+                $datetime =$_SESSION["selectdate"];
+            }
+            //select SUM(fb.amount)as amount,ft.type_name
+            // from fee_bill as fb
+            // INNER JOIN fee_type ft on ft.type_id=fb.type_id
+            // where 
+            // fb.type_id =2 
+            // and fb.user_name = 'user1111@gmail.com' 
+            // and DATE_FORMAT(fb.bill_time, '%Y-%m')like DATE_FORMAT('2022-11-02', '%Y-%m');
+
+            if(!empty($_SESSION["username"])){
+
+                $query = "
+                select SUM(fb.amount) as amount
+                from fee_bill as fb
+                INNER JOIN fee_type ft on ft.type_id=fb.type_id
+                where 
+                fb.type_id =:type_id and fb.state = 1
+                and  fb.user_name = :username 
+                and DATE_FORMAT(fb.bill_time, '%Y-%m')like DATE_FORMAT(:dateMonth, '%Y-%m')";
+               $statement = $this->conn->prepare($query); 
+               $statement->execute(
+               ['username' => $_SESSION["username"] 
+               ,'dateMonth' => $datetime 
+               ,'type_id' =>$type_id
+               ]
+               );
+               $totalsum = $statement->fetchAll(PDO::FETCH_COLUMN);
+               
+               return $totalsum[0];
+            }
         }
 
 

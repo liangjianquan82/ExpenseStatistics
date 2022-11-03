@@ -1,7 +1,7 @@
 .mainbody {
     background-size: 100% 840px;
     background-repeat: no-repeat;
-    background-image: url(../views/back.png)
+    background-image: url(http://localhost/ExpenseStatistics/views/back.png)
 }
 .mainbody .container .mainheader {
     width: auto;

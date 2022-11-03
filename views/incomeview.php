@@ -19,9 +19,11 @@ include 'css/bootstrap-4.4.1.css';
         public $data;
         private $html;
         public $total;
+        public $datetime;
 
         function __construct($data){
 
+        $this->datetime = $_SESSION["selectdate"];
         $this->data = $data;
         
 
@@ -41,11 +43,8 @@ include 'css/bootstrap-4.4.1.css';
                <div class="row">
            <div class="col-xl-6"><a class="btn btn-dark" href="'.ROOTURL.'/users/createfee/'.'">Add</a></div>  
            <div class="col-xl-6"><div class="search">
-                 <input type="checkbox" id="year" aria-label="placeholder text" >
-                 <label>Year</label>
-                 <input type="checkbox" id="month" aria-label="placeholder text" checked="true">
-                 <label>Month</label>
-                 <input type="date" id="dateMonth" name="dateMonth" value = "'.date("Y-m-d").'"/>&nbsp;
+                 
+                 <input type="date" id="dateMonth" name="dateMonth" value = "'.$this->datetime.'"/>&nbsp;
                  <input type="submit" class="btn btn-dark" value="Check" /></div></div>  
              
          

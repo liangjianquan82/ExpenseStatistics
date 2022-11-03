@@ -10,6 +10,8 @@
 	
 </head>
 
+
+
 <body  style="padding-top: 70px; padding-bottom: 70px;">
 	<div class="container">
 	
@@ -95,15 +97,15 @@
 		myCars1[5]="necessities";
 
 var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
+var myChart = new  Chart(ctx, {
+    type: "doughnut",
     data: {
         labels: myCars1,
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
-                '#AA1111',
+                "#AA1111",
                 '#FFFFFF',
                 '#000000',
                 '#EBEBEB',

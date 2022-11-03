@@ -70,6 +70,7 @@
             $_SESSION["username"] = $data["username"];
 
             $_SESSION["password"] = $data["password"];
+            $_SESSION['selectdate'] = date("Y-m-d");
             //$_SESSION["user_id"] = $result["user_id"];
 
            

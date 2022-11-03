@@ -66,32 +66,25 @@
                     // Instead of doing this:
                     // require(dirname(__DIR__)."/views/".users.".php");
                     // we could use class_exists which invokes spl_autoload_register in index.php
-                    $this->data = $user->$action($params, $payload);
+                    $this->databill = $feebill->$action($params, $payload);
                     if(class_exists("HomeView")){ 
-                        $userview = new HomeView($this->data);
+                        $userview = new HomeView($this->databill);
                     }                   
                 
                 }
                 else if ($action == "listexp"){
-                    
-                    // require(dirname(__DIR__)."/views/".$action."users".".php");
                     $this->databill = $feebill->$action($params, $payload);
                     if(class_exists("expensesview")){
                         $userview = new ExpensesView($this->databill);
                     }                
                 } 
                 else if ($action == "listincome"){
-                    
-                    // require(dirname(__DIR__)."/views/".$action."users".".php");
                     $this->databill = $feebill->$action($params, $payload);
                     if(class_exists("incomeview")){
                         $userview = new IncomeView($this->databill);
                     }                
                 }      
                 else if($action == "createfee"){
-
-                    //var_dump($payload);
-                    // Take the user to the default secured page
                     $this->databill = $feebill->$action($params, $payload);
                     $this->datatype = $feetype->listtype($params, $payload);
                     if(class_exists("addupdatefee")){ 
@@ -99,9 +92,6 @@
                     }     
                 } 
                 else if($action == "updatefee"){
-
-                    //var_dump($payload);
-                    // Take the user to the default secured page
                     $this->databill = $feebill->$action($params, $payload);
                     $this->datatype = $feetype->listtypeAll();
                     if(class_exists("addupdatefee")){ 
@@ -109,11 +99,8 @@
                     }     
                 } 
                 else if($action == "createtype"){
-
-                   
-                    // Take the user to the default secured page
                     $this->datatype = $feetype->$action($params, $payload);
-                    //header("Location: ".ROOTURL."/users/listtype/");
+                    
                     if(class_exists("addupdatetype")){ 
                         $userview = new AddUpdateType($this->datatype);
                     }     
@@ -126,26 +113,30 @@
                     if(class_exists("addupdatetype")){ 
                         $userview = new AddUpdateType($this->datatype);
                     }     
-                    //header("Location: ".ROOTURL."/users/listtype/");
+                   
                 } 
                 else if($action == "listtype"){
 
-                    // Take the user to the default secured page
+                    
                     $this->datatype = $feetype->$action($params, $payload);
                     if(class_exists("typeview")){ 
                         $userview = new TypeView($this->datatype);
                     }     
                 }    
                 else if($action == "login"){
-                   //echo 23;
-                    // Take the user to the default secured page
+                   
                     $this->data = $user->$action($params, $payload);
                     if(class_exists("HomeView")){ 
                         $userview = new HomeView($this->data);
                     }
-                    //
-
                 }
+                else if($action == "Statistic"){
+                    
+                     $this->databill = $feebill->$action($params, $payload);
+                     if(class_exists("Statistic")){ 
+                         $userview = new Statistic($this->databill);
+                     }
+                 }
                
             }// if loggedIn
             else{
